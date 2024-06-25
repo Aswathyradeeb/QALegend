@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.Random;
+
 import com.github.javafaker.Faker;
 
 public class RandomDataUtility {
@@ -21,12 +23,9 @@ public class RandomDataUtility {
 		faker=new Faker();
 		return faker.name().lastName();
 	}
-	public static String getUserName() {
-		faker=new Faker();
-		return faker.name().username();
-	}
-	public static String getPassword() {
-		faker=new Faker();
-		return faker.internet().password();
+
+	public static int getNumber() {
+		Random randomNum = new Random();
+		return randomNum. nextInt(100);
 	}
 }

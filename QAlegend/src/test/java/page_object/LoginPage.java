@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.WaitUtility;
+
 public class LoginPage {
 	
 	WebDriver driver;
@@ -23,8 +25,6 @@ public class LoginPage {
 	WebElement passwordField;
 	@FindBy(xpath="//button[@class='btn btn-primary']")
 	WebElement loginButton;
-	// explicit wait - to wait for the span button to be click-able
-	WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 	@FindBy(xpath="//span[@class='help-block']")
 	WebElement validationMsg;
 	
@@ -40,7 +40,7 @@ public class LoginPage {
 	}
 	
 	public String getValidationMsg() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='help-block']")));
+		WaitUtility.waitForElementVisiblityByXpath(driver,"//span[@class='help-block']");
 		return validationMsg.getText();
 	}
 	

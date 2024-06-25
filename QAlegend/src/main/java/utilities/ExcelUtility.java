@@ -17,7 +17,7 @@ public class ExcelUtility {
     public static String getStringData(int row,int column,String sheet) {
     	try
     	{
-    		f= new FileInputStream("E:\\Aswathy\\Workspace\\QaLegend\\src\\main\\resources\\TestData.xlsx");
+    		f= new FileInputStream("C:\\Users\\hp\\git\\QALegend\\QAlegend\\src\\main\\resources\\TestData.xlsx");
         	w= new XSSFWorkbook(f);
         	sh= w.getSheet(sheet);
         	Row r= sh.getRow(row);
@@ -32,7 +32,7 @@ public class ExcelUtility {
     
     public static String getIntData(int row, int column,String sheet) {
     	try {
-    		f= new FileInputStream("E:\\Aswathy\\Workspace\\QaLegend\\src\\main\\resources\\TestData.xlsx");
+    		f= new FileInputStream("C:\\Users\\hp\\git\\QALegend\\QAlegend\\src\\main\\resources\\TestData.xlsx");
         	w= new XSSFWorkbook(f);
         	sh= w.getSheet(sheet);
         	Row r= sh.getRow(row);

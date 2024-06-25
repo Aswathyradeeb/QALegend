@@ -19,7 +19,6 @@ public class ResetPageTest extends Base {
 	public void VerifyResetPageOnForgotPassword() throws IOException {
 		driver.get("https://qalegend.com/billing/public/password/reset");
 		String actualTitle = driver.getTitle();
-		System.out.println(actualTitle);
 		String expectedTitle = ExcelUtility.getStringData(0, 0, "ForgotPassword");
 		Assert.assertEquals(actualTitle, expectedTitle, "Failed: Title mismatch");
 
@@ -33,19 +32,19 @@ public class ResetPageTest extends Base {
 		driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
 		WebElement msg = driver.findElement(By.xpath("//span[@class='help-block']"));
 		String errorMsg = msg.getText();
-		String actualMsg = ExcelUtility.getStringData(1, 0, "ForgotPassword");
+		String actualMsg = ExcelUtility.getStringData(1, 0, "ResetPage");
 		Assert.assertEquals(errorMsg, actualMsg, "Failed: Email validation failed");
 	}
 
 	@Test
-	public void verifyMsgWithValidEmailId() {
+	public void verifyMsgWithNotRegisteredValidEmailId() {
 		driver.get("https://qalegend.com/billing/public/password/reset");
 		WebElement emailField = driver.findElement(By.id("email"));
 		emailField.sendKeys(RandomDataUtility.getEmail());
 		driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
 		WebElement msg = driver.findElement(By.xpath("//span[@class='help-block']"));
 		String errorMsg = msg.getText();
-		String actualMsg = ExcelUtility.getStringData(2, 0, "ForgotPassword");
+		String actualMsg = ExcelUtility.getStringData(2, 0, "ResetPage");
 		Assert.assertEquals(errorMsg, actualMsg, "Failed: Email validation failed");
 	}
 }

@@ -20,6 +20,12 @@ public class UserPage {
 	WebElement tableRows;
 	@FindBy(xpath="//input[@type=\"search\"]")
 	WebElement searchField;
+	@FindBy(xpath="//a[@class=\"btn btn-block btn-primary\"]")
+	WebElement addUserButton;
+	public AddUserPage addUser() {
+		addUserButton.click();
+		return new AddUserPage(driver); 
+	}
 	
 	public String getName() {
 		List<WebElement> rows = userTable.findElements(By.tagName("tr"));
@@ -30,14 +36,14 @@ public class UserPage {
 	
 	public String getEmail() {
 		List<WebElement> rows = userTable.findElements(By.tagName("tr"));
-		List<WebElement> cols = rows.get(3).findElements(By.tagName("td"));
-		String cell = cols.get(1).getText();
+		List<WebElement> cols = rows.get(1).findElements(By.tagName("td"));
+		String cell = cols.get(3).getText();
 		return cell;
 	}
 	
 	public void editClick() {
 		List<WebElement> rows = userTable.findElements(By.tagName("tr"));
-		List<WebElement> cols = rows.get(4).findElements(By.tagName("td"));
+		List<WebElement> cols = rows.get(2).findElements(By.tagName("td"));
 		cols.get(1).getText();
 	}
 	public void enterSearchItem(String search) {

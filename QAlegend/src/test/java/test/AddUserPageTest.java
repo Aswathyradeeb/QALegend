@@ -1,11 +1,12 @@
 package test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
 import page_object.HomePage;
 import page_object.LoginPage;
+import page_object.UserPage;
 import page_object.AddUserPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
@@ -23,22 +24,25 @@ public class AddUserPageTest extends Base {
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
 		home.endTourClick();
-		AddUserPage addUserPage = home.addUserPage();
-
-		// explicit wait - to wait for the span button to be click-able
-		// WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-		// WebElement span=driver.findElement(By.xpath("/(//span)[2]"));
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span)[2]")));
-		// span.click();
-
+		UserPage userPage = home.userPage();
+        AddUserPage addUserPage=userPage.addUser();
+		
 		// add form
-		String passwordField = RandomDataUtility.getPassword();
-		Select dropdownRole = new Select(driver.findElement(By.id("role")));
-		dropdownRole.selectByIndex(2);
-		addUserPage.addUser(RandomDataUtility.getPrefix(), RandomDataUtility.getFirstName(),
-				RandomDataUtility.getLastName(), RandomDataUtility.getEmail(), RandomDataUtility.getUserName(),
-				passwordField, "90");
-
+        String firstName= RandomDataUtility.getFirstName();
+        String lastName= RandomDataUtility.getLastName();
+        String UserPassword= firstName+lastName;
+        String email= firstName+lastName+"@gmail.com";       
+        addUserPage.getSurname(RandomDataUtility.getPrefix());
+        addUserPage.getFirstname(firstName);
+        addUserPage.getLastname(lastName);
+        addUserPage.getEmail(email);
+        addUserPage.getPassword(UserPassword);
+        addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
+		addUserPage.getSelectRole();
+		addUserPage.submitUser();
+        userPage.enterSearchItem(email);
+        String searchResult=userPage.getEmail();
+		Assert.assertEquals(email, searchResult,"Failed: User Not Registered");
 	}
 
 	@Test
@@ -51,17 +55,28 @@ public class AddUserPageTest extends Base {
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
 		home.endTourClick();
-		AddUserPage addUserPage = home.addUserPage();
+		UserPage userPage = home.userPage();
+        AddUserPage addUserPage=userPage.addUser();
+		
 		// add form
-		String passwordField = RandomDataUtility.getPassword();
-		String userNameFied = RandomDataUtility.getUserName();
-		Select dropdownRole = new Select(driver.findElement(By.id("role")));
-		dropdownRole.selectByIndex(2);
-		addUserPage.addUser(RandomDataUtility.getPrefix(), RandomDataUtility.getFirstName(),
-				RandomDataUtility.getLastName(), RandomDataUtility.getEmail(), userNameFied, passwordField, "90");
+        String firstName= RandomDataUtility.getFirstName();
+        String lastName= RandomDataUtility.getLastName();
+        String UserPassword= firstName+lastName;
+        String email= firstName+lastName+"@gmail.com";       
+        addUserPage.getSurname(RandomDataUtility.getPrefix());
+        addUserPage.getFirstname(firstName);
+        addUserPage.getLastname(lastName);
+        addUserPage.getEmail(email);
+        addUserPage.getPassword(UserPassword);
+        addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
+		addUserPage.getSelectRole();
+		addUserPage.submitUser();
 		addUserPage.signOut();
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		home = login.clickLogin();
+		String actualTitle = driver.getTitle();
+		String expectedTitle = ExcelUtility.getStringData(0, 0, "HomePage");
+		Assert.assertEquals(actualTitle, expectedTitle, "Failed: Not able to Login with the newely added User");
 	}
 }

@@ -16,6 +16,8 @@ public class UserPageTest extends Base {
 	@Test
 
 	public void VerifySearchUserPageTest() {
+		
+		//get the user from excel and search
 		LoginPage login = new LoginPage(driver);
 		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.getIntData(0, 1, "LoginPage");
