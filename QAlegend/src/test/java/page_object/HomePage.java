@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.DateUtility;
+
 public class HomePage {
 	WebDriver driver;
 	HomePage(WebDriver driver){
@@ -23,6 +25,8 @@ public class HomePage {
 	WebElement userManagementClick;
 	@FindBy(xpath="/html/body/div[2]/aside/section/ul/li[2]/ul/li[1]/a/span")
 	WebElement userClick;
+	@FindBy(xpath="//div[@class='m-8 pull-left mt-15 hidden-xs']")
+	WebElement dateField;
 	
 	public String getUserName() {
 		return userNameField.getText();
@@ -32,12 +36,20 @@ public class HomePage {
 	public void endTourClick() {
 		endTourButton.click();
 	}
-
-
+    public String getLoginDate() {
+    	return dateField.getText();   	
+    }
+    public String getCurrentDate() {
+    	return DateUtility.getUserLoginDate("dd-MM-YYYY");
+    }
 	public UserPage userPage() {
 		userManagementClick.click();
 		userClick.click();
 		return new UserPage(driver);
+	}
+	public UserManagementPage userOptions() {
+		userManagementClick.click();
+		return new UserManagementPage(driver);
 	}
 	public ProfilePage profilePage() {
 		userNameField.click();

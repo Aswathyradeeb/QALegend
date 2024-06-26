@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constants.Constants;
+import constants.Messages;
 import page_object.HomePage;
 import page_object.LoginPage;
 import page_object.ProfilePage;
@@ -17,8 +19,8 @@ public class ProfilePageTest extends Base {
 	public void VerifyProfile (){
 		//change to last name
 		LoginPage login= new LoginPage(driver);
-		String UserName= ExcelUtility.getStringData(0, 0, "LoginPage");
-		String password= ExcelUtility.getIntData(0, 1, "LoginPage");
+		String UserName= ExcelUtility.getStringData(0, 0, Constants.LOGINPAGE);
+		String password= ExcelUtility.getIntData(0, 1, Constants.LOGINPAGE);
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		HomePage home=login.clickLogin();
@@ -27,7 +29,7 @@ public class ProfilePageTest extends Base {
 		profilePage.enterFirstname("Admin1");
 		profilePage.profileUpdate();
 		String updatedUserName= home.getUserName();
-		Assert.assertEquals("Admin1", updatedUserName,"Failed: Profile not updated");
+		Assert.assertEquals("Admin1", updatedUserName,Messages.PROFILE_NOT_UPDATED);
 	}
 	
 }
