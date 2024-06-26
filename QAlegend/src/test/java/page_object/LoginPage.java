@@ -27,7 +27,10 @@ public class LoginPage {
 	WebElement loginButton;
 	@FindBy(xpath="//span[@class='help-block']")
 	WebElement validationMsg;
+	@FindBy(xpath="//a[@class=\"btn btn-link\"]")
+	WebElement forgotPasswordButton;
 	
+   
 	public void enterUserName(String userName) {
 		userNameField.sendKeys(userName);
 	}
@@ -43,5 +46,9 @@ public class LoginPage {
 		WaitUtility.waitForElementVisiblityByXpath(driver,"//span[@class='help-block']");
 		return validationMsg.getText();
 	}
+	 public ResetPage forgotPasswordButtonClick() {
+    	 forgotPasswordButton.click();
+    	 return new ResetPage(driver);
+    }
 	
 }

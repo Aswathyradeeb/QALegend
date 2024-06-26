@@ -9,7 +9,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constants.Constants;
+import constants.Messages;
 import dataProvider.DataProviders;
+import page_object.LoginPage;
+import page_object.ResetPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
@@ -17,34 +21,32 @@ public class ResetPageTest extends Base {
 
 	@Test
 	public void VerifyResetPageOnForgotPassword() throws IOException {
-		driver.get("https://qalegend.com/billing/public/password/reset");
-		String actualTitle = driver.getTitle();
-		String expectedTitle = ExcelUtility.getStringData(0, 0, "ForgotPassword");
-		Assert.assertEquals(actualTitle, expectedTitle, "Failed: Title mismatch");
-
+		LoginPage login = new LoginPage(driver);
+		ResetPage resetPage= login.forgotPasswordButtonClick();
+		String actualTitle = resetPage.getTitle();
+		String expectedTitle = ExcelUtility.getStringData(0, 0, Constants.FORGOTPASSWORDPAGE);
+		Assert.assertEquals(actualTitle, expectedTitle, Messages.TITLE_MISMATCH);
 	}
 
 	@Test(dataProvider = "verifyUserEmailData", dataProviderClass = DataProviders.class)
 	public void VerifyErrorMsgWithInvalidMailId(String email) {
-		driver.get("https://qalegend.com/billing/public/password/reset");
-		WebElement emailField = driver.findElement(By.id("email"));
-		emailField.sendKeys(email);
-		driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
-		WebElement msg = driver.findElement(By.xpath("//span[@class='help-block']"));
-		String errorMsg = msg.getText();
-		String actualMsg = ExcelUtility.getStringData(1, 0, "ResetPage");
-		Assert.assertEquals(errorMsg, actualMsg, "Failed: Email validation failed");
+		LoginPage login = new LoginPage(driver);
+		ResetPage resetPage= login.forgotPasswordButtonClick();
+		resetPage.getEmail(email);
+		resetPage.sendLinkButtonClick();
+		String actualMsg =resetPage.getValidationMsg();
+		String expectedMsg = ExcelUtility.getStringData(1, 0, Constants.FORGOTPASSWORDPAGE);
+		Assert.assertEquals(actualMsg, expectedMsg, Messages.EMAIL_VALIDATION_FAILED);
 	}
 
 	@Test
 	public void verifyMsgWithNotRegisteredValidEmailId() {
-		driver.get("https://qalegend.com/billing/public/password/reset");
-		WebElement emailField = driver.findElement(By.id("email"));
-		emailField.sendKeys(RandomDataUtility.getEmail());
-		driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
-		WebElement msg = driver.findElement(By.xpath("//span[@class='help-block']"));
-		String errorMsg = msg.getText();
-		String actualMsg = ExcelUtility.getStringData(2, 0, "ResetPage");
-		Assert.assertEquals(errorMsg, actualMsg, "Failed: Email validation failed");
+		LoginPage login = new LoginPage(driver);
+		ResetPage resetPage= login.forgotPasswordButtonClick();
+		resetPage.getEmail(RandomDataUtility.getEmail());
+		resetPage.sendLinkButtonClick();
+		String actualMsg =resetPage.getValidationMsg();
+		String expectedMsg = ExcelUtility.getStringData(2, 0, Constants.FORGOTPASSWORDPAGE);
+		Assert.assertEquals(actualMsg, expectedMsg, Messages.EMAIL_VALIDATION_FAILED);
 	}
 }
