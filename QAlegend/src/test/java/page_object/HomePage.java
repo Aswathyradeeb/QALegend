@@ -24,7 +24,9 @@ public class HomePage {
 	@FindBy(xpath="//span[@class='title' and text()='User Management']")
 	WebElement userManagementClick;
 	@FindBy(xpath="/html/body/div[2]/aside/section/ul/li[2]/ul/li[1]/a/span")
-	WebElement userClick;
+	WebElement usersOption;
+	@FindBy(xpath="/html/body/div[2]/aside/section/ul/li[2]/ul/li[2]/a/span")
+	WebElement rolesOption;
 	@FindBy(xpath="//div[@class='m-8 pull-left mt-15 hidden-xs']")
 	WebElement dateField;
 	
@@ -44,8 +46,9 @@ public class HomePage {
     }
 	public UserPage userPage() {
 		userManagementClick.click();
-		userClick.click();
+		usersOption.click();
 		return new UserPage(driver);
+		
 	}
 	public UserManagementPage userOptions() {
 		userManagementClick.click();
@@ -55,5 +58,11 @@ public class HomePage {
 		userNameField.click();
 		profileButton.click();
 		return new ProfilePage(driver);
+	}
+	
+	public RolePage rolePage() {
+		userManagementClick.click();
+		rolesOption.click();
+		return new RolePage(driver);
 	}
 }

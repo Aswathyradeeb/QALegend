@@ -11,12 +11,13 @@ import automationCore.Base;
 import constants.Constants;
 import constants.Messages;
 import dataProvider.DataProviders;
+import listners.RetryAnalyser;
 import page_object.HomePage;
 import page_object.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginPageTest extends Base {
-	@Test	
+	@Test(groups="Sanity",retryAnalyzer= RetryAnalyser.class)	
 	public void VerifyLoginwithValidCredentials() throws IOException{
 		LoginPage login= new LoginPage(driver);
 		String UserName= ExcelUtility.getStringData(0, 0, Constants.LOGINPAGE);
@@ -29,7 +30,7 @@ public class LoginPageTest extends Base {
 		Assert.assertEquals(actualName, expectedName,Messages.LOGIN_FAILED);
 		
 	}
-	@Test(dataProvider="InvalidDataCredentials",dataProviderClass=DataProviders.class)
+	@Test(groups="Sanity",dataProvider="InvalidDataCredentials",dataProviderClass=DataProviders.class)
 	public void VerifyErrorMessageWhileLoginwithInvalidCredentials(String username,String password) {
 		LoginPage login= new LoginPage(driver);
 		login.enterUserName(username);

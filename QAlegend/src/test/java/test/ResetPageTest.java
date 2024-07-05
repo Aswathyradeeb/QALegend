@@ -19,23 +19,23 @@ import utilities.RandomDataUtility;
 
 public class ResetPageTest extends Base {
 
-	@Test
+	@Test(groups="Sanity")
 	public void VerifyResetPageOnForgotPassword() throws IOException {
 		LoginPage login = new LoginPage(driver);
 		ResetPage resetPage= login.forgotPasswordButtonClick();
 		String actualTitle = resetPage.getTitle();
-		String expectedTitle = ExcelUtility.getStringData(0, 0, Constants.FORGOTPASSWORDPAGE);
+		String expectedTitle = ExcelUtility.getStringData(0, 0, Constants.RESETPAGE);
 		Assert.assertEquals(actualTitle, expectedTitle, Messages.TITLE_MISMATCH);
 	}
 
-	@Test(dataProvider = "verifyUserEmailData", dataProviderClass = DataProviders.class)
+	@Test(groups="Smoke",dataProvider = "verifyUserEmailData", dataProviderClass = DataProviders.class)
 	public void VerifyErrorMsgWithInvalidMailId(String email) {
 		LoginPage login = new LoginPage(driver);
 		ResetPage resetPage= login.forgotPasswordButtonClick();
 		resetPage.getEmail(email);
 		resetPage.sendLinkButtonClick();
 		String actualMsg =resetPage.getValidationMsg();
-		String expectedMsg = ExcelUtility.getStringData(1, 0, Constants.FORGOTPASSWORDPAGE);
+		String expectedMsg = ExcelUtility.getStringData(1, 0, Constants.RESETPAGE);
 		Assert.assertEquals(actualMsg, expectedMsg, Messages.EMAIL_VALIDATION_FAILED);
 	}
 
@@ -46,7 +46,7 @@ public class ResetPageTest extends Base {
 		resetPage.getEmail(RandomDataUtility.getEmail());
 		resetPage.sendLinkButtonClick();
 		String actualMsg =resetPage.getValidationMsg();
-		String expectedMsg = ExcelUtility.getStringData(2, 0, Constants.FORGOTPASSWORDPAGE);
+		String expectedMsg = ExcelUtility.getStringData(2, 0, Constants.RESETPAGE);
 		Assert.assertEquals(actualMsg, expectedMsg, Messages.EMAIL_VALIDATION_FAILED);
 	}
 }

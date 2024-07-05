@@ -11,13 +11,13 @@ public class ProfilePage {
 		this.driver= driver;
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy(id="first_name")
-	WebElement firstNameField;
+	@FindBy(id="last_name")
+	WebElement lastNameField;
 	@FindBy(xpath="//button[@type=\"submit\"]")
 	WebElement profileUpdate;
-	public void enterFirstname(String fname) {
-		firstNameField.clear();
-		firstNameField.sendKeys(fname);
+	public void enterLastname(String lname) {
+		lastNameField.clear();
+		lastNameField.sendKeys(lname);
 	}
 	
 	

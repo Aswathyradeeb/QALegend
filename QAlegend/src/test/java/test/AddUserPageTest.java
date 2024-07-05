@@ -25,6 +25,9 @@ public class AddUserPageTest extends Base {
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
+		String actualName= home.getUserName();
+		String expectedName= ExcelUtility.getStringData(2, 0, Constants.LOGINPAGE);
+		Assert.assertEquals(actualName, expectedName,Messages.LOGIN_FAILED);
 		home.endTourClick();
 		UserPage userPage = home.userPage();
         AddUserPage addUserPage=userPage.addUser();

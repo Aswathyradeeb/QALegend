@@ -9,4 +9,8 @@ public class Messages {
 	public static final String LOGIN_FAILED_ADDED_USER="Failed: Not able to Login with the newely added User";
 	public static final String TITLE_MISMATCH="Failed: Title mismatch";
 	public static final String EMAIL_VALIDATION_FAILED="Failed: Email validation failed";
+	public static final String USER_OPTION_NOT_PRESENT="Failed:User Option Not Present";
+	public static final String ROLE_OPTION_NOT_PRESENT="Failed:Role Option Not Present";
+	public static final String SALES_OPTION_NOT_PRESENT="Failed:Sale Option Not Present";
+	public static final String ROLE_NOT_PRESENT="Failed:Searched Not Found";
 }
