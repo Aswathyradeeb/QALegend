@@ -3,8 +3,6 @@ package utilities;
 import org.openqa.selenium.WebElement;
 
 public class WebElementUtility {
-//isdisplayed isenabled
-	
 	public static boolean isElementEnabled(WebElement element) {
 		return element.isEnabled();
 		}

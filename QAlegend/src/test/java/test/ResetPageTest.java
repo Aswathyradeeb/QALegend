@@ -20,7 +20,7 @@ import utilities.RandomDataUtility;
 public class ResetPageTest extends Base {
 
 	@Test(groups="Sanity")
-	public void VerifyResetPageOnForgotPassword() throws IOException {
+	public void VerifyResetPageTitleOnForgotPassword() throws IOException {
 		LoginPage login = new LoginPage(driver);
 		ResetPage resetPage= login.forgotPasswordButtonClick();
 		String actualTitle = resetPage.getTitle();

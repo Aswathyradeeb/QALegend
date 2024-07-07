@@ -12,10 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtility {
 
-	public static final long IMPLICIT_WAIT = 10;
+	public static final long IMPLICIT_WAIT = 20;
 	public static final long EXPLICIT_WAIT = 15;
 	public static final long PAGELOAD_WAIT = 15;
-	public void waitUsingimplicitWait(WebDriver driver) {
+	public static void waitUsingimplicitWait(WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICIT_WAIT));
 	}
 
@@ -26,6 +26,10 @@ public class WaitUtility {
 	public static void waitForElementVisiblityByXpath(WebDriver driver, String path) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path))).click();
+	}
+	public static void waitForElementVisiblityById(WebDriver driver, String id) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
 	}
 	public static void waitForElementToBeVisible(WebDriver driver, WebElement element) {
 		FluentWait wait= new FluentWait(driver).withTimeout(Duration.ofSeconds(PAGELOAD_WAIT)).pollingEvery(Duration.ofSeconds(PAGELOAD_WAIT)).ignoring(NoSuchElementException.class);

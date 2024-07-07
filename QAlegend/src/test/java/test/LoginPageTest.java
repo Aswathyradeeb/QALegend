@@ -17,7 +17,7 @@ import page_object.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginPageTest extends Base {
-	@Test(groups="Sanity",retryAnalyzer= RetryAnalyser.class)	
+	@Test(groups="Sanity")	
 	public void VerifyLoginwithValidCredentials() throws IOException{
 		LoginPage login= new LoginPage(driver);
 		String UserName= ExcelUtility.getStringData(0, 0, Constants.LOGINPAGE);

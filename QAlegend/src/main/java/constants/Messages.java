@@ -13,4 +13,5 @@ public class Messages {
 	public static final String ROLE_OPTION_NOT_PRESENT="Failed:Role Option Not Present";
 	public static final String SALES_OPTION_NOT_PRESENT="Failed:Sale Option Not Present";
 	public static final String ROLE_NOT_PRESENT="Failed:Searched Not Found";
+	public static final String USER_SEARCH_FAILED="Failed: Searched user Not Found";
 }

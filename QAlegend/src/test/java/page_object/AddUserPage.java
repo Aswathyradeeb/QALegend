@@ -41,6 +41,8 @@ public class AddUserPage {
 	WebElement cmmsn_percentField;
 	@FindBy(id="submit_user_button")
 	WebElement submit_user_buttonField;
+	@FindBy(xpath="/html/body/div[2]/aside/section/ul/li[1]/a/span")
+	WebElement homePage;
 	@FindBy(xpath="//a[@class=\"dropdown-toggle\"]")
 	WebElement profile;
 	@FindBy(xpath="//a[@class=\"btn btn-default btn-flat\" and text()=\"Sign Out\"]")
@@ -76,8 +78,10 @@ public class AddUserPage {
 		PageUtility.selectByIndex(2, roleDrp);	
 		submit_user_buttonField.click();
 	}
+	public void homePage() {
+		homePage.click();
+	}
 	public void signOut() {
-		//call the wait utility
 		WaitUtility.waitForElementClick(driver,profile);
 		WaitUtility.waitForElementClick(driver,signoutBtn);
 	}

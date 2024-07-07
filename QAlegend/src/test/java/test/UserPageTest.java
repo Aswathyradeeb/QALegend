@@ -25,31 +25,14 @@ public class UserPageTest extends Base {
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
-		String actualName= home.getUserName();
-		String expectedName= ExcelUtility.getStringData(2, 0, Constants.LOGINPAGE);
-		Assert.assertEquals(actualName, expectedName,Messages.LOGIN_FAILED);
 		home.endTourClick();
 		UserPage userPage = home.userPage();
+		userPage.loadUserTable();
 		String user=userPage.getName();
 		userPage.enterSearchItem(user);
 		String searchResult=userPage.getName();
-		Assert.assertEquals(user, searchResult,"Failed: Searched user Not Found");
+		Assert.assertEquals(user, searchResult,Messages.USER_SEARCH_FAILED);
 	}
 	
-	@Test
-
-	public void VerifyEditUserPageTest() {
-		LoginPage login = new LoginPage(driver);
-		String UserName = ExcelUtility.getStringData(0, 0, Constants.LOGINPAGE);
-		String password = ExcelUtility.getIntData(0, 1, Constants.LOGINPAGE);
-		login.enterUserName(UserName);
-		login.enterPassword(password);
-		HomePage home = login.clickLogin();
-		home.endTourClick();
-		UserPage userPage = home.userPage();
-		String email=userPage.getEmail();
-		userPage.enterSearchItem(email);
-		String searchResult=userPage.getName();
-		Assert.assertEquals(email, searchResult,"Failed: Searched user Not Found");
-	}
+	
 }

@@ -9,15 +9,8 @@
 		<parameter name="browser" value="Chrome" />
 		<classes>
 			<class name="test.LoginPageTest"/> 
-			<!--<class name="test.RolePageTest">
-				<methods>
-					<exclude name="VerifySearchUserPageTest" />
-					<include
-						name="VerifyEditUserPageTest" />
-				</methods>
-			</class>
+			<class name="test.RolePageTest"/>			
 			 <class name="test.HomePageTest"/>
-      <class name="test.RegisterPageTest"/> -->
 		</classes>
 	</test> <!--
 	Test -->

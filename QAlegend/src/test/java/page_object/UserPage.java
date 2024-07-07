@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.WaitUtility;
+
 public class UserPage {
 	WebDriver driver;
 	public UserPage(WebDriver driver){
@@ -28,6 +30,7 @@ public class UserPage {
 	}
 	
 	public String getName() {
+		WaitUtility.waitForElementVisiblityById(driver,"users_table");
 		List<WebElement> rows = userTable.findElements(By.tagName("tr"));
 		List<WebElement> cols = rows.get(1).findElements(By.tagName("td"));
 		String cell = cols.get(1).getText();
@@ -47,7 +50,11 @@ public class UserPage {
 		cols.get(1).getText();
 	}
 	public void enterSearchItem(String search) {
+		
 		searchField.sendKeys(search);
 	}
 	
+	public void loadUserTable() {
+		WaitUtility.waitForElementToBeVisible(driver,userTable);
+	}
 }

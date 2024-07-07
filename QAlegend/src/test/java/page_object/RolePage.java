@@ -11,6 +11,7 @@ public class RolePage {
 	  this.driver= driver;
 	  PageFactory.initElements(driver, this);
 	}
+
 	@FindBy(xpath="//input[@type=\"search\"]")
 	WebElement searchField;
 	@FindBy(xpath="//*[@id=\"roles_table\"]/tbody/tr/td[1]")

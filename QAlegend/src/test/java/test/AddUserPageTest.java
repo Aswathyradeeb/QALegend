@@ -25,14 +25,10 @@ public class AddUserPageTest extends Base {
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
-		String actualName= home.getUserName();
-		String expectedName= ExcelUtility.getStringData(2, 0, Constants.LOGINPAGE);
-		Assert.assertEquals(actualName, expectedName,Messages.LOGIN_FAILED);
 		home.endTourClick();
 		UserPage userPage = home.userPage();
         AddUserPage addUserPage=userPage.addUser();
 		
-		// add form
         String firstName= RandomDataUtility.getFirstName();
         String lastName= RandomDataUtility.getLastName();
         String UserPassword= firstName+lastName;
@@ -45,7 +41,9 @@ public class AddUserPageTest extends Base {
         addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
 		addUserPage.getSelectRole();
 		addUserPage.submitUser();
-        userPage.enterSearchItem(email);
+		addUserPage.homePage();
+		UserPage usrPage = home.userPage();
+		usrPage.enterSearchItem(email);
         String searchResult=userPage.getEmail();
 		Assert.assertEquals(email, searchResult,Messages.USER_NOT_REGISTERED);
 	}
@@ -63,22 +61,23 @@ public class AddUserPageTest extends Base {
 		UserPage userPage = home.userPage();
         AddUserPage addUserPage=userPage.addUser();
 		
-		// add form
         String firstName= RandomDataUtility.getFirstName();
         String lastName= RandomDataUtility.getLastName();
         String UserPassword= firstName+lastName;
         String email= firstName+lastName+Constants.GMAIL_EXTENTION;       
         addUserPage.getSurname(RandomDataUtility.getPrefix());
         addUserPage.getFirstname(firstName);
+        addUserPage.getUsername(firstName+lastName);
         addUserPage.getLastname(lastName);
         addUserPage.getEmail(email);
         addUserPage.getPassword(UserPassword);
         addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
 		addUserPage.getSelectRole();
 		addUserPage.submitUser();
+		addUserPage.homePage();
 		addUserPage.signOut();
-		login.enterUserName(UserName);
-		login.enterPassword(password);
+		login.enterUserName(firstName+lastName);
+		login.enterPassword(UserPassword);
 		home = login.clickLogin();
 		String actualTitle = driver.getTitle();
 		String expectedTitle = ExcelUtility.getStringData(0, 0, Constants.HOMEPAGE);

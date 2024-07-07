@@ -4,13 +4,13 @@
   <test thread-count="5" name="Functional Test(failed)">
     <parameter name="browser" value="Chrome"/>
     <classes>
-      <class name="test.RolePageTest">
+      <class name="test.AddUserPageTest">
         <methods>
-          <include name="VerifyEditUserPageTest"/>
+          <include name="VerifyAddUserPage"/>
           <include name="closeBrowser"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- test.RolePageTest -->
+      </class> <!-- test.AddUserPageTest -->
     </classes>
   </test> <!-- Functional Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
