@@ -56,8 +56,7 @@ public class HomePage {
 		userManagement.click();
 		usersOption.click();
 		WaitUtility.waitUsingimplicitWait(driver);
-		return new UserPage(driver);
-		
+		return new UserPage(driver);	
 	}
 	public UserManagementPage userOptions() {
 		userManagement.click();

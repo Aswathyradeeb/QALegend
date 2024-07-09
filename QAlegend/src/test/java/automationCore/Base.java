@@ -25,54 +25,49 @@ public class Base {
 	protected WebDriver driver;
 	public Properties prop;
 	public FileInputStream file;
-	public void initialiseBrowser(String browser) {		
+
+	public void initialiseBrowser(String browser) {
 		try {
-			prop= new Properties();
-			file= new FileInputStream(Constants.CONFIG_FILE);
+			prop = new Properties();
+			file = new FileInputStream(Constants.CONFIG_FILE);
 			prop.load(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		if(browser.equals("Chrome")) {
-			driver=  new ChromeDriver(); 
-		}
-		else if(browser.equals("Edge")) {
-			driver= new EdgeDriver();
-		}
-		else if(browser.equals("Firefox")) {
-			driver= new FirefoxDriver();
-		}
-		else {
+
+		if (browser.equals("Chrome")) {
+			driver = new ChromeDriver();
+		} else if (browser.equals("Edge")) {
+			driver = new EdgeDriver();
+		} else if (browser.equals("Firefox")) {
+			driver = new FirefoxDriver();
+		} else {
 			throw new RuntimeException();
 		}
 		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
-		
+
 	}
-	
-	@BeforeMethod(alwaysRun=true)
-	@Parameters({"browser"})
+
+	@BeforeMethod(alwaysRun = true)
+	@Parameters({ "browser" })
 	public void setup(String browserName) {
 		initialiseBrowser(browserName);
 	}
-	
-	@AfterMethod(alwaysRun=true)
+
+	@AfterMethod(alwaysRun = true)
 	public void closeBrowser(ITestResult result) throws IOException {
-		if(result.getStatus()== ITestResult.FAILURE) {
+		if (result.getStatus() == ITestResult.FAILURE) {
 			takeScreenShot(result);
 		}
-		driver.close(); 
+		driver.close();
 	}
-	
+
 	public void takeScreenShot(ITestResult result) throws IOException {
-		TakesScreenshot takeScreenShot= (TakesScreenshot) driver;
-		File screenshot= takeScreenShot.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot,new File("./Screenshot/"+result.getName()+".png"));	
+		TakesScreenshot takeScreenShot = (TakesScreenshot) driver;
+		File screenshot = takeScreenShot.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshot, new File("./Screenshot/" + result.getName() + ".png"));
 	}
-
-		
-	}
-
+}
