@@ -10,10 +10,10 @@ public class DataProviders {
 		data[0][1]= "123456";
 		
 		data[1][0]= "testmail@gmail.com";
-		data[1][1]= "123456";
+		data[1][1]= "12345667";
 		
-		data[2][0]= "testUser@gmail.com";
-		data[2][1]= "123456";
+		data[2][0]= "testUser@gmailcom";
+		data[2][1]= "123456777";
 		return data;
 	}
 	@DataProvider(name="verifyUserEmailData")

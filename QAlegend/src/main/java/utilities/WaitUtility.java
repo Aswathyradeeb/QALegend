@@ -27,9 +27,9 @@ public class WaitUtility {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path))).click();
 	}
-	public static void waitForElementVisiblityById(WebDriver driver, String id) {
+	public static void waitForElementVisiblity(WebDriver driver, WebElement element) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id))).click();
+		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 	public static void waitForElementToBeVisible(WebDriver driver, WebElement element) {
 		FluentWait wait= new FluentWait(driver).withTimeout(Duration.ofSeconds(PAGELOAD_WAIT)).pollingEvery(Duration.ofSeconds(PAGELOAD_WAIT)).ignoring(NoSuchElementException.class);

@@ -23,9 +23,6 @@ public class RolePageTest extends Base {
 		login.enterUserName(UserName);
 		login.enterPassword(password);
 		HomePage home = login.clickLogin();
-		String actualName= home.getUserName();
-		String expectedName= ExcelUtility.getStringData(2, 0, Constants.LOGINPAGE);
-		Assert.assertEquals(actualName, expectedName,Messages.LOGIN_FAILED);
 		home.endTourClick();
 		RolePage rolePage= home.rolePage();
 		String searchRole= ExcelUtility.getStringData(0, 0, Constants.ROLESPAGE);

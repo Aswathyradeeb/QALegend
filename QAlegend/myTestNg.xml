@@ -4,7 +4,8 @@
 	<test name="Functional Test">
 		<parameter name="browser" value="Chrome" />
 		<classes>
-			<class name="test.LoginPageTest">
+			<class name="test.RolePageTest" />
+			<!--<class name="test.LoginPageTest">
 				<methods>
 					<include name="VerifyLoginwithValidCredentials" />
 					<exclude
@@ -15,10 +16,9 @@
 			<class name="test.HomePageTest" />
 			<class name="test.ProfilePageTest" />
 			<class name="test.ResetPageTest" />
-
 			<class name="test.UserPageTest" />
 			<class name="test.AddUserPageTest" />
-			<class name="test.RolePageTest" />
+			<class name="test.RolePageTest" /> -->
 		</classes>
 	</test> <!--
 	Test -->

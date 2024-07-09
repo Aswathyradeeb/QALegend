@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utilities.PageUtility;
+import utilities.RandomDataUtility;
 import utilities.WaitUtility;
 
 public class AddUserPage {
@@ -68,7 +69,8 @@ public class AddUserPage {
 		passwordField.sendKeys(password);
 		confirm_passwordField.sendKeys(password);
 	}
-	public void getCmmsnpercent(String cmmsn_percent){
+	public void getCmmsnpercent(){
+		String cmmsn_percent=Integer.toString(RandomDataUtility.getNumber());
 		cmmsn_percentField.sendKeys(cmmsn_percent);
 	}
 	public void getSelectRole() {

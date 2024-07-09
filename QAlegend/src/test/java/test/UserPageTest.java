@@ -18,7 +18,6 @@ public class UserPageTest extends Base {
 	@Test
 
 	public void VerifySearchUserPageTest() {
-	
 		LoginPage login = new LoginPage(driver);
 		String UserName = ExcelUtility.getStringData(0, 0, Constants.LOGINPAGE);
 		String password = ExcelUtility.getIntData(0, 1, Constants.LOGINPAGE);
@@ -27,7 +26,6 @@ public class UserPageTest extends Base {
 		HomePage home = login.clickLogin();
 		home.endTourClick();
 		UserPage userPage = home.userPage();
-		userPage.loadUserTable();
 		String user=userPage.getName();
 		userPage.enterSearchItem(user);
 		String searchResult=userPage.getName();

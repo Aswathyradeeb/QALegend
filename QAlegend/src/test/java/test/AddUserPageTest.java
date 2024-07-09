@@ -38,7 +38,7 @@ public class AddUserPageTest extends Base {
         addUserPage.getLastname(lastName);
         addUserPage.getEmail(email);
         addUserPage.getPassword(UserPassword);
-        addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
+        addUserPage.getCmmsnpercent();
 		addUserPage.getSelectRole();
 		addUserPage.submitUser();
 		addUserPage.homePage();
@@ -71,7 +71,7 @@ public class AddUserPageTest extends Base {
         addUserPage.getLastname(lastName);
         addUserPage.getEmail(email);
         addUserPage.getPassword(UserPassword);
-        addUserPage.getCmmsnpercent(Integer.toString(RandomDataUtility.getNumber()));
+        addUserPage.getCmmsnpercent();
 		addUserPage.getSelectRole();
 		addUserPage.submitUser();
 		addUserPage.homePage();
